@@ -1,0 +1,626 @@
+/* ============================================================
+   Tableau-close styling for the Covid-19 QCIT BoD webapp.
+   Trebuchet MS · #0000C9 for section title bars · white cards.
+   ============================================================ */
+
+body, .Select-control, .Select-menu-outer, .Dropdown-control {
+    font-family: "Trebuchet MS", Trebuchet, Arial, sans-serif !important;
+    color: #333;
+    background: #F5F5F7;
+    margin: 0;
+}
+
+/* ---- Top header ---- */
+.app-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 16px; background: #FFFFFF;
+    border-bottom: 1px solid #DADADA;
+}
+.app-title {
+    color: #0000C9; font-weight: 700; font-size: 16px;
+}
+.header-refresh {
+    color: #C00000; font-size: 10px; font-weight: 600;
+    text-align: right;
+}
+
+/* ---- Parameter panel (Tableau-style grouped fieldsets) ---- */
+.param-panel {
+    background: #FFFFFF;
+    padding: 12px 10px 8px 10px;
+    border-bottom: 1px solid #DADADA;
+}
+.param-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: stretch;
+}
+.param-row:last-child { margin-bottom: 0; }
+
+.param-group {
+    position: relative;
+    border: 1px dashed #57A857;   /* dashed green like Tableau */
+    border-radius: 0;
+    padding: 12px 8px 6px 8px;
+    background: #FFFFFF;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+.param-group-title {
+    position: absolute;
+    top: -8px; left: 8px;
+    background: #FFFFFF;
+    padding: 0 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.4px;
+    text-transform: none;
+    line-height: 14px;
+}
+.param-group-body {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+    align-items: flex-end;
+}
+.param-cell {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+.param-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2px;
+    line-height: 12px;
+}
+
+/* ---- Compact dropdown styling ---- */
+.param-dd {
+    font-size: 11px !important;
+    /* Hard-cap the height so multi-select chip lists cannot expand the row. */
+    height: 26px !important;
+    max-height: 26px !important;
+    overflow: hidden !important;
+}
+
+/* The .dd-wrap sits between the label and the dropdown for every
+   multi-select. It must also be pinned so the overlay-summary <div> has a
+   fixed parent size. */
+.dd-wrap {
+    position: relative;
+    height: 26px;
+    max-height: 26px;
+    overflow: hidden;
+}
+.dd-wrap > .param-dd { flex: 1 1 auto; }
+
+/* Legacy react-select v1 (Dash < 2) */
+.param-dd .Select-control,
+.param-dd > div:first-child {
+    min-height: 26px !important;
+    border: 1px solid #B8B8B8 !important;
+    border-radius: 2px !important;
+    background: #FFFFFF !important;
+    font-size: 11px !important;
+}
+.param-dd .Select-value,
+.param-dd .Select-placeholder,
+.param-dd .Select-input {
+    line-height: 24px !important;
+    height: 24px !important;
+    font-size: 11px !important;
+    padding-left: 6px !important;
+}
+.param-dd .Select-arrow-zone { padding-right: 4px !important; }
+.param-dd .Select--multi .Select-value {
+    background: #F0F0F5 !important; color: #333 !important;
+    border: 1px solid #DADADA !important;
+    font-size: 10px !important;
+    margin: 2px 0 0 2px !important;
+    padding: 0 4px !important; line-height: 18px !important;
+}
+.param-dd .Select-menu-outer { font-size: 11px !important; }
+
+/* react-select v3+ (Dash 2+/4+) — style container and children generically.
+   Cover both camelCase (singleValue, valueContainer) and hyphenated
+   (single-value, value-container) class-name conventions used by
+   different Dash / react-select versions. */
+.param-dd [class*="control"] {
+    min-height: 26px !important;
+    max-height: 26px !important;
+    height: 26px !important;
+    border: 1px solid #B8B8B8 !important;
+    border-radius: 2px !important;
+    background: #FFFFFF !important;
+    font-size: 11px !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    overflow: hidden !important;
+    flex-wrap: nowrap !important;
+}
+.param-dd [class*="control"]:hover { border-color: #666 !important; }
+.param-dd [class*="ValueContainer"],
+.param-dd [class*="valueContainer"],
+.param-dd [class*="value-container"] {
+    min-height: 24px !important;
+    max-height: 24px !important;
+    padding: 0 6px !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+}
+.param-dd [class*="placeholder"] { color: #999 !important; font-size: 11px !important; }
+.param-dd [class*="singleValue"],
+.param-dd [class*="single-value"] {
+    color: #333 !important;
+    font-size: 11px !important;
+    line-height: 22px !important;
+    max-width: 100% !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.param-dd [class*="multiValue"],
+.param-dd [class*="multi-value"] {
+    background: #F0F0F5 !important; border: 1px solid #DADADA !important;
+    border-radius: 2px !important; margin: 2px 2px 2px 0 !important;
+}
+.param-dd [class*="multiValue"] [class*="Label"],
+.param-dd [class*="multi-value"] [class*="label"] {
+    font-size: 10px !important; padding: 0 4px !important; color: #333 !important;
+}
+.param-dd [class*="indicatorSeparator"],
+.param-dd [class*="indicator-separator"] { display: none !important; }
+.param-dd [class*="indicatorContainer"],
+.param-dd [class*="IndicatorContainer"],
+.param-dd [class*="indicator-container"] { padding: 3px 6px !important; }
+.param-dd [class*="menu"] { font-size: 11px !important; z-index: 30; }
+.param-dd input { font-size: 11px !important; }
+
+/* ============================================================
+   Tableau-style multi-select filter (`_ms` helper)
+   Button + Popover + Checklist with (All) row synchronised to
+   individual selections via a pattern-matching clientside callback.
+   ============================================================ */
+
+.ms-cell {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}
+
+.ms-btn {
+    box-sizing: border-box;
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
+    height: 26px;
+    padding: 0 6px 0 8px;
+    font-family: inherit;
+    font-size: 11px;
+    color: #333;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ms-btn:hover      { border-color: #666; }
+.ms-btn:focus      { outline: none; border-color: #0000C9; }
+.ms-btn-text {
+    flex: 1 1 auto;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    min-width: 0;
+}
+.ms-btn-arrow {
+    flex: 0 0 auto;
+    margin-left: 4px;
+    color: #666; font-size: 10px;
+}
+
+/* Popover (dbc) shell.
+   NB: `dbc.Popover(className="ms-pop", ...)` puts BOTH classes on the same
+   element, so the correct selector is `.ms-pop.popover` (no space). The
+   scroll must live on ONE inner element only — otherwise nested overflow
+   containers each grow a scrollbar. */
+.ms-pop {
+    max-width: none !important;
+}
+.popover.ms-pop,
+.ms-pop.popover,
+.ms-pop {
+    max-width: 460px !important;
+    min-width: 260px;
+    width: max-content;
+    border: 1px solid #b4b4b4 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+    border-radius: 2px !important;
+    font-family: inherit;
+    overflow: visible !important;
+    max-height: none !important;
+}
+/* Kill any nested overflow / max-height inside the popover EXCEPT the
+   PopoverBody itself. This prevents dcc.Checklist / its wrappers from
+   spawning their own scroll containers. */
+.ms-pop *,
+.ms-body * {
+    max-height: none !important;
+}
+.ms-pop > *,
+.ms-body > *,
+.ms-chk,
+.ms-chk > *,
+.ms-chk > * > * {
+    overflow: visible !important;
+}
+/* PopoverBody is the SOLE scroll container. */
+.ms-pop .popover-body,
+.ms-body {
+    padding: 4px 6px !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    font-size: 11px;
+    color: #333;
+}
+
+/* Sticky search input — stays pinned at the top of the popover body while
+   the checklist scrolls underneath. */
+.ms-search {
+    position: sticky !important;
+    top: 0;
+    z-index: 10;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    width: 100%;
+    height: 24px;
+    padding: 0 6px;
+    margin: 0 0 4px 0;
+    font-size: 11px;
+    color: #333;
+    border: 1px solid #C4C4C4;
+    border-radius: 2px;
+    outline: none;
+}
+.ms-search:focus { border-color: #0000C9; }
+
+/* Checklist rows */
+.ms-chk label,
+.ms-chk .ms-checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 4px;
+    margin: 0;
+    line-height: 1.4;
+    cursor: pointer;
+    border-radius: 2px;
+    /* Force single-line rows: long strings truncate with ellipsis instead
+       of wrapping across 3-4 lines (which balloons row height and forces
+       an inner scroll container). */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+.ms-chk label:hover,
+.ms-chk .ms-checkbox-label:hover { background: #F0F0F0; }
+
+.ms-chk input[type="checkbox"],
+.ms-chk .ms-checkbox {
+    margin: 0 !important;
+    accent-color: #0000C9;
+    width: 13px; height: 13px;
+    flex: 0 0 auto;
+}
+
+/* First option ((All)) — separate it visually */
+.ms-chk label:first-of-type,
+.ms-chk .ms-checkbox-label:first-of-type {
+    font-weight: 600;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 2px;
+    padding-bottom: 4px;
+}
+
+/* Local-filter variant sits inside the section blue header */
+.ms-btn.local-filter-btn {
+    background: #FFFFFF;
+    color: #333;
+    height: 22px;
+    font-size: 11px;
+}
+.ms-btn.local-filter-btn .ms-btn-text  { color: #333; }
+.ms-btn.local-filter-btn .ms-btn-arrow { color: #666; }
+
+/* Single-select radio rows inside the popover — same visual language as
+   the multi-select checkbox rows so all filters feel identical. */
+.ss-radio label,
+.ss-radio .ms-checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 4px;
+    margin: 0;
+    line-height: 1.4;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 11px;
+    color: #333;
+}
+.ss-radio label:hover,
+.ss-radio .ms-checkbox-label:hover { background: #F0F0F0; }
+.ss-radio input[type="radio"] {
+    margin: 0 !important;
+    accent-color: #0000C9;
+    width: 13px; height: 13px;
+    flex: 0 0 auto;
+}
+
+/* Search input inside popover — filters visible checklist rows without
+   affecting the underlying selection state. */
+.ms-search {
+    box-sizing: border-box;
+    width: 100%;
+    height: 22px;
+    padding: 0 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #333;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    border-radius: 2px;
+    outline: none;
+}
+.ms-search:focus { border-color: #0000C9; }
+
+/* Legacy .dd-multi-summary / .dd-wrap CSS removed — the Tableau-style
+   filter is now the `_ms` popover above. */
+
+
+/* Legacy CSS/JS summaries (kept for compatibility, no longer used). */
+.dd-summary-text {
+    padding: 0 6px;
+    color: #333;
+    font-size: 11px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* ---- Apply / Reset buttons ---- */
+.param-actions {
+    display: flex; flex-direction: column; gap: 4px;
+    align-items: stretch; justify-content: flex-end;
+    min-width: 108px;
+}
+.apply-btn {
+    background: #0000C9; color: white; border: none;
+    padding: 6px 12px; font-size: 11px; font-weight: 700;
+    border-radius: 2px; cursor: pointer;
+    letter-spacing: 0.3px;
+}
+.apply-btn:hover { background: #000099; }
+.reset-btn {
+    background: #666; color: white; border: none;
+    padding: 4px 8px; font-size: 14px; font-weight: 700;
+    border-radius: 2px; cursor: pointer;
+    line-height: 14px;
+}
+.reset-btn:hover { background: #444; }
+
+/* ---- Sections ---- */
+.sections-wrap { padding: 8px 14px 40px 14px; }
+.section-card {
+    background: #FFFFFF;
+    border: 1px solid #B8B8B8;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.section-title {
+    background: #0000C9; color: white; font-weight: 600;
+    padding: 4px 12px; font-size: 12px;
+    border-bottom: 1px solid #000080;
+    display: flex; align-items: center; gap: 16px;
+    min-height: 32px;
+}
+.section-title-text {
+    flex: 1 1 auto;
+    font-size: 12px; font-weight: 700;
+}
+
+/* -- Local filters inline in the title bar (S8) -- */
+.section-local-filters-inline {
+    display: flex; align-items: center; gap: 14px;
+    flex: 0 0 auto;
+}
+/* Every filter cell (works for the old `.local-filter-cell` markup AND
+   the new `_ms`/`_ss` popover markup which wraps in `.param-cell`) sits
+   inline as label + control on the same row. */
+.section-local-filters-inline .local-filter-cell,
+.section-local-filters-inline .param-cell {
+    display: flex; flex-direction: row !important;
+    align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+.section-local-filters-inline .local-filter-label,
+.section-local-filters-inline .param-cell > .local-filter-label,
+.section-local-filters-inline .param-cell > .param-label {
+    color: #FFFFFF;
+    font-size: 10.5px; font-weight: 500;
+    text-transform: none; letter-spacing: 0.2px;
+    margin: 0; white-space: nowrap;
+    line-height: 22px;
+}
+/* The popover button sits directly to the right of its label. */
+.section-local-filters-inline .ms-cell {
+    flex: 0 0 auto;
+    min-width: 180px;
+}
+.section-local-filters-inline .ms-btn {
+    height: 22px;
+}
+.section-local-filters-inline .local-filter-dd {
+    min-width: 160px;
+    /* Break inheritance from the blue title bar: dropdown text must be dark. */
+    color: #333;
+}
+.section-local-filters-inline .local-filter-dd [class*="control"] {
+    background: #FFFFFF !important;
+    border: 1px solid #FFFFFF !important;
+    min-height: 26px !important;
+    box-shadow: none !important;
+    color: #333 !important;
+}
+.section-local-filters-inline .local-filter-dd [class*="control"]:hover {
+    border-color: #DADADA !important;
+}
+.section-local-filters-inline .local-filter-dd [class*="ValueContainer"],
+.section-local-filters-inline .local-filter-dd [class*="valueContainer"],
+.section-local-filters-inline .local-filter-dd [class*="value-container"] {
+    min-height: 24px !important;
+    padding: 0 6px !important;
+    color: #333 !important;
+}
+.section-local-filters-inline .local-filter-dd [class*="placeholder"],
+.section-local-filters-inline .local-filter-dd [class*="singleValue"],
+.section-local-filters-inline .local-filter-dd [class*="single-value"] {
+    color: #333 !important;
+    font-size: 11px !important;
+    line-height: 22px !important;
+}
+.section-local-filters-inline .local-filter-dd [class*="multiValue"],
+.section-local-filters-inline .local-filter-dd [class*="multi-value"] {
+    background: #F0F0F5 !important;
+    border: 1px solid #DADADA !important;
+    color: #333 !important;
+}
+.section-local-filters-inline .local-filter-dd [class*="multiValue"] *,
+.section-local-filters-inline .local-filter-dd [class*="multi-value"] * {
+    color: #333 !important;
+}
+.section-local-filters-inline .local-filter-dd input {
+    color: #333 !important;
+}
+.section-local-filters-inline .local-filter-dd .dd-summary-text {
+    color: #333 !important;
+}
+.section-sub-row {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 8px 14px; background: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+/* -- Local filter row (S8/S9) — mirrors Tableau's per-worksheet filter shelf -- */
+.section-local-filters {
+    display: flex;
+    gap: 16px;
+    padding: 10px 16px;
+    background: #FAFAFA;
+    border-bottom: 1px solid #E0E0E0;
+    align-items: flex-end;
+}
+.local-filter-cell {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 220px;
+    min-width: 160px;
+}
+.local-filter-label {
+    font-size: 10px; font-weight: 700; color: #333;
+    margin-bottom: 3px; letter-spacing: 0.3px;
+}
+.local-filter-dd { font-size: 11px !important; }
+.section-sub { font-size: 11px; color: #333; text-align: center; }
+.section-sub-strong { font-weight: 700; color: #333; }
+.section-loading { padding: 0; min-height: 0; }
+
+/* -- Chart + table live in the same fixed grid so bars align with cells -- */
+.section-body {
+    padding: 0;
+    background: white;
+}
+.bod-legend {
+    display: flex; gap: 22px; justify-content: center;
+    padding: 6px 14px 4px 14px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EFEFEF;
+}
+.legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #333; font-family: "Trebuchet MS", Trebuchet, Arial, sans-serif;
+}
+.legend-swatch {
+    display: inline-block; width: 14px; height: 14px; border-radius: 2px;
+}
+.bod-chart-wrap {
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+.bod-chart-wrap > div { width: 100% !important; }
+
+/* ---- Tables under charts ---- */
+.bod-table { padding: 0; background: white; }
+.bod-table table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 11px;
+    border-top: 1px solid #B8B8B8;
+}
+.bod-table th, .bod-table td {
+    padding: 6px 6px;
+    border-right: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    text-align: center; font-variant-numeric: tabular-nums;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bod-table th:last-child, .bod-table td:last-child { border-right: none; }
+.bod-table tr:last-child td { border-bottom: none; }
+.bod-table th.row-label, .bod-table td.row-label {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    text-align: left; padding-left: 14px; padding-right: 8px;
+    font-weight: 500; color: #333;
+    background: #FFFFFF; white-space: normal;
+    border-right: 1px solid #B8B8B8;
+}
+.bod-table thead th {
+    background: #FFFFFF; color: #333; font-weight: 700;
+    border-bottom: 1px solid #B8B8B8;
+}
+.bod-table th.group-header {
+    text-align: center;
+    border-bottom: 1px solid #B8B8B8;
+    background: #FFFFFF; padding: 6px 4px;
+    font-weight: 700;
+}
+.bod-table th.sub-header {
+    text-align: center;
+    background: #FFFFFF;
+    font-weight: 600; color: #333;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #B8B8B8;
+    padding: 4px;
+}
+.bod-table tbody tr:nth-child(even) td:not(.row-label) { background: #FAFAFA; }
+.bod-table th.reference-col-header {
+    background: #0000C9 !important; color: white !important;
+    font-weight: 700;
+}
+.bod-table td.reference-col-cell {
+    background: #D9D9D9 !important; font-weight: 600;
+}
+.empty-note { padding: 12px; font-size: 11px; color: #888; }
+.err { padding: 8px; color: #C00000; font-size: 11px; }
